@@ -1,19 +1,26 @@
 {{>header}}
 {{>navbar}}
 <section class="my-3 container">
-    <form>
+    {{#unless user}}
+    <div class="alert alert-danger">There is no user of that id!</div>
+    {{else}}
+    <form method="post">
         <div class="mb-3">
-            <input class="form-control" placeholder="user id" disabled>
+            <label>ID</label><br>
+            <input class="form-control" placeholder="user id" disabled value="{{user.id}}" name="id">
         </div>
         <div class="mb-3">
-            <input class="form-control" placeholder="user name">
+            <label>Name</label><br>
+            <input class="form-control" placeholder="user name" value="{{user.name}}" name="userName">
         </div>
         <div class="mb-3">
-            <input class="form-control" placeholder="user age">
+            <label>Age</label><br>
+            <input class="form-control" placeholder="user age" value="{{user.age}}" name="age">
         </div>
         <div class="mb-3">
-            <input type="submit" class="btn btn-primary" value="add user">
+            <input type="submit" class="btn btn-primary" value="save user">
         </div>
     </form>
+    {{/unless}}
 </section>
 {{>footer}}

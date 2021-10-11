@@ -1,16 +1,20 @@
-const express = require("express")
-const hbs = require('hbs')
 const path = require('path')
+const express = require('express')
+const hbs = require('hbs')
 
-const userRoutes = require("../routes/userRoutes")
+// routes
+const userRoute = require('../routes/userRoutes')
 
 const app = express()
-app.set("view engine", "hbs")
 
-app.use( express.static( path.join(__dirname, "../public") ) ) 
-app.set( 'views', path.join(__dirname, '../frontend/views' ))
-hbs.registerPartials(  path.join(__dirname, '../frontend/layouts' ))
+// app configration
+app.set('view engine', 'hbs')
+app.set('views', path.join(__dirname, '../frontend/views'))
+app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.urlencoded({extended:true}))
+hbs.registerPartials(path.join(__dirname, '../frontend/layouts'))
 
-app.use(userRoutes)
-app.get("*", (req,res)=>{res.render('errorPage', {pageTitle:"page not found"})})
+// use routes
+app.use(userRoute)
+
 module.exports = app
