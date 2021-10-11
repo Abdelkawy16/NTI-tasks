@@ -114,7 +114,7 @@ class userController {
             writeData(users)
             res.redirect('/all')
         } else {
-            res.redirect(`edit/${user.id}`)
+            res.redirect(`/edit/${user.id}`)
         }
     }
 }
