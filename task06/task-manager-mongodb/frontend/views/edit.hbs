@@ -1,0 +1,27 @@
+{{>header}}
+{{>navbar}}
+<section class="my-3 container">
+    {{#unless task}}
+    <div class="alert alert-danger">There is no user of that id!</div>
+    {{else}}
+    <form method="post">
+        <div class="mb-3">
+            <input class="form-control" placeholder="user id" disabled value="{{task._id}}">
+        </div>
+        <div class="dropdown my-3 mb-3">
+            <select name="taskType" class="form-select" aria-label="Default select example">
+                {{#each allTypes}}
+                <option vlaue="{{this.taskType}}">{{this.taskType}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" placeholder="task Name" value="{{task.taskName}}"  name="taskName">
+        </div>
+        <div class="mb-3">
+            <input type="submit" class="btn btn-primary" value="save user">
+        </div>
+    </form>
+    {{/unless}}
+</section>
+{{>footer}}
